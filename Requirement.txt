@@ -4,4 +4,6 @@ seaborn
 scikit-learn
 pyspark
 matplotlib
+catboost
+xgboost
 # -e .
