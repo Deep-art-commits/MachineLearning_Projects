@@ -6,4 +6,5 @@ pyspark
 matplotlib
 catboost
 xgboost
+dill
 # -e .
