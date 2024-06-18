@@ -5,6 +5,8 @@ from src.logger import logging
 import pandas as pd
 from sklearn.model_selection import train_test_split
 from dataclasses import dataclass # used to define class variables without using init
+from src.components.data_transformation import Data_transformation
+from src.components.data_transformation import Data_transformation_config
 
 @dataclass
 class Data_ingestion_config:
@@ -51,4 +53,6 @@ class Data_ingestion:
         
 if __name__=="__main__":
     obj=Data_ingestion()
-    obj.initiate_data_ingestion()
+    test_data,train_data=obj.initiate_data_ingestion()
+    data_transformation=Data_transformation()
+    data_transformation.initiate_data_transformation(train_data,test_data)
