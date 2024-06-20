@@ -22,6 +22,7 @@ def evaluate_model(X_train,y_train,X_test,y_test,models):
     try:
         report={}
         report_d={}
+        model_lst=[]
         for i in range(len(list(models))):
             model=list(models.values())[i]
             logging.info("Model Evaluation started")
@@ -34,17 +35,11 @@ def evaluate_model(X_train,y_train,X_test,y_test,models):
             Train_model_adj_Rscore=1-(1-Train_model_Rscore)*(len(y_test)-1)/(len(y_test)-X_test.shape[1]-1)
             Test_model_adj_Rscore=1-(1-Test_model_Rscore)*(len(y_test)-1)/(len(y_test)-X_test.shape[1]-1)
         
-            report_d[list(models.keys())[i]]=pd.DataFrame({"Train_model_Rscore":Train_model_Rscore,
-                                                           "Train_model_adj_Rscore":Train_model_adj_Rscore,
-                                                           "Test_model_Rscore":Test_model_Rscore,
-                                                           "Test_model_adj_Rscore":Test_model_adj_Rscore},
-                                                          index=['Train_R_score',
-                                                                                                                 'Train_adjusted R2',
-                                                                                                                 'Test_R_score',
-                                                                                                                 'Test_model_adj_Rscore'])
-            
-            # print(f"Full report is: {report_d.values()}")
-            report[list(models.keys())[i]]=Test_model_Rscore
+            # report_d[i]={model_lst[i]:[Train_model_Rscore,Train_model_adj_Rscore,Test_model_Rscore,Test_model_adj_Rscore]}
+            # rep=pd.DataFrame(report_d,index=['Train_R2','Train_model_adj_Rscore','Test_model_Rscore','Test_model_adj_Rscore'])
+            # print(f"Full report is: {rep}\n")
+            # print("\n")
+            report[list(models.keys())[i]]=Test_model_adj_Rscore
         return report
     except Exception as e:
                 raise custom_exception(e,sys)  
