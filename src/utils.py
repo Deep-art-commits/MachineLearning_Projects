@@ -64,5 +64,11 @@ def evaluate_model(X_train,y_train,X_test,y_test,models,param):
         return report
         print(report_d)
     except Exception as e:
-                raise custom_exception(e,sys)  
+                raise custom_exception(e,sys) 
+def load_object(file_path)    :
+    try:
+        with open(file_path,"rb") as f_obj:
+            return dill.load(f_obj) 
+    except Exception as e:
+                raise custom_exception(e,sys)           
         
